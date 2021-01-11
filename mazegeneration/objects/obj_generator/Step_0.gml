@@ -41,6 +41,9 @@ if cells_visited < maze_width * maze_height
 		}
 	}
 	
+	var x_offset = 0;
+	var y_offset = 0;
+	
 	if !ds_list_empty(neighbors)
 	{
 		//If there are any unvisited cells next to the current cell, it chooses a random direction in the list of possible directions
@@ -49,57 +52,43 @@ if cells_visited < maze_width * maze_height
 		{
 			case cell.CELL_PATH_NORTH:
 			{
-				//If North was choosen, carve a path going North and mark the North cell as visited
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_NORTH] = true;
-				
-				ds_stack_push(coord_list_x, pointer_x);
-				ds_stack_push(coord_list_y, pointer_y - 1);
-				pointer_y--;
-				
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_SOUTH] = true;
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_VISITED] = true;
+				//If North was choosen, indicate that the next cell is 1 cell above the current cell
+				y_offset = -1;
 				break;
 			}
 			case cell.CELL_PATH_EAST:
 			{
-				//If East was choosen, carve a path going North and mark the East cell as visited
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_EAST] = true;
-				
-				ds_stack_push(coord_list_x, pointer_x + 1);
-				ds_stack_push(coord_list_y, pointer_y);
-				pointer_x++;
-				
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_WEST] = true;
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_VISITED] = true;
+				//If East was choosen, indicate that the next cell is 1 cell to the right of the current cell
+				x_offset = 1;
 				break;
 			}
 			case cell.CELL_PATH_SOUTH:
 			{
-				//If South was choosen, carve a path going South and mark the North cell as visited
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_SOUTH] = true;
-				
-				ds_stack_push(coord_list_x, pointer_x);
-				ds_stack_push(coord_list_y, pointer_y + 1);
-				pointer_y++;
-				
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_NORTH] = true;
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_VISITED] = true;
+				//If South was choosen, indicate that the next cell is 1 cell below the current cell
+				y_offset = 1;
 				break;
 			}
 			case cell.CELL_PATH_WEST:
 			{
-				//If West was choosen, carve a path going West and mark the North cell as visited
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_WEST] = true;
-				
-				ds_stack_push(coord_list_x, pointer_x - 1);
-				ds_stack_push(coord_list_y, pointer_y);
-				pointer_x--;
-				
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_PATH_EAST] = true;
-				maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_VISITED] = true;
+				//If East was choosen, indicate that the next cell is 1 cell to the left of the current cell
+				x_offset = -1;
 				break;
 			}
 		}
+		
+		//Carve a path from the current cell to the next one
+		maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][next_cell_dir] = true;
+		
+		//Change the current cell to the next one
+		ds_stack_push(coord_list_x, pointer_x + x_offset);
+		ds_stack_push(coord_list_y, pointer_y + y_offset);
+		pointer_x += x_offset;
+		pointer_y += y_offset;
+		
+		//Carve a path from the new current cell to the old one, and mark the new one as visited
+		maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][(next_cell_dir + 2) % 4] = true;
+		maze_status[array_get_coord(pointer_x, pointer_y, maze_width)][cell.CELL_VISITED] = true;
+		
 		//Tell the program that another cell has been visited, so it knows when to stop when there are enough
 		cells_visited++;
 	}
