@@ -2,6 +2,7 @@
   "resources": [
     {"id":{"name":"obj_generator_recursize_backtracker","path":"objects/obj_generator_recursize_backtracker/obj_generator_recursize_backtracker.yy",},"order":0,},
     {"id":{"name":"obj_generator_randomized_prim","path":"objects/obj_generator_randomized_prim/obj_generator_randomized_prim.yy",},"order":1,},
+    {"id":{"name":"obj_generator_binary_tree","path":"objects/obj_generator_binary_tree/obj_generator_binary_tree.yy",},"order":2,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [

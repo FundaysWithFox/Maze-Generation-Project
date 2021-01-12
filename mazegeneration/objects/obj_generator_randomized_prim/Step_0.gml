@@ -100,7 +100,6 @@ if cells_visited < maze_width * maze_height
 		ds_list_delete(coord_list_y, cell_choice);
 	}
 	ds_list_destroy(neighbors);
-	delay = 0;
 }
 
 //Reset the maze if the space bar has been pressed

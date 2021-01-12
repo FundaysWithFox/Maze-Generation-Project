@@ -16,12 +16,5 @@ for (var i = 0; i < maze_width * maze_height; i++)
 	maze_status[i] = array_create(5, false);
 }
 
-//Setting up the list of coordinates so the algorithm can decide what cell to expand from
-coord_list_x = ds_list_create();
-coord_list_y = ds_list_create();
-ds_list_add(coord_list_x, irandom(maze_width - 1));
-ds_list_add(coord_list_y, irandom(maze_height - 1));
-
-//Marking the starting cell as visited
-maze_status[array_get_coord(ds_list_find_value(coord_list_x, 0), ds_list_find_value(coord_list_y, 0), maze_width)][cell.CELL_VISITED] = true;
-cells_visited = 1;
+//Setting up the current cell that the algorithm is setting
+current_cell = 0;
