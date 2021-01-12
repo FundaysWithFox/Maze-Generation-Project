@@ -19,7 +19,11 @@ array_get_coord = function(x, y, width)
 cell_size = 32;
 maze_width = room_width / cell_size;
 maze_height = room_height / cell_size;
-maze_status = array_create(maze_width * maze_height, array_create(5, false));
+maze_status = array_create(maze_width * maze_height, 0);
+for (var i = 0; i < maze_width * maze_height; i++)
+{
+	maze_status[i] = array_create(5, false);
+}
 
 //Setting up the list of coordinates so the algorithm can backtrack
 coord_list_x = ds_stack_create();

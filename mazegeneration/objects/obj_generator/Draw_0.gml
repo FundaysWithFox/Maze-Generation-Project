@@ -27,10 +27,3 @@ for (var i = 0; i < maze_width; i++)
 		}
 	}
 }
-
-//Just some debug stuff
-draw_set_color(c_black);
-draw_text(20, 20, cells_visited);
-draw_text(20, 40, ds_stack_top(coord_list_x));
-draw_text(20, 60, ds_stack_top(coord_list_y));
-draw_text(20, 80, string(clamp(mouse_x, 0, room_width) div cell_size) + " " + string(clamp(mouse_y, 0, room_height) div cell_size) + " " + string(maze_status[array_get_coord(clamp(mouse_x, 0, room_width) div cell_size, clamp(mouse_y, 0, room_height) div cell_size, maze_width)]));

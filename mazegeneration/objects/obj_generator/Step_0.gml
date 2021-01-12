@@ -1,5 +1,5 @@
 //Checking to see whether or not the maze has been finished, can be changed to a while loop to generate instantly
-if cells_visited < maze_width * maze_height && delay >= 10
+if cells_visited < maze_width * maze_height
 {
 	//Sets up the list of possible directions that the algorithm can go
 	var neighbors = ds_list_create();
@@ -101,7 +101,6 @@ if cells_visited < maze_width * maze_height && delay >= 10
 	ds_list_destroy(neighbors);
 	delay = 0;
 }
-else delay ++;
 
 //Reset the maze if the space bar has been pressed
 if keyboard_check_pressed(vk_space) room_restart();
