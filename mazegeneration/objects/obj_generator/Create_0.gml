@@ -30,3 +30,6 @@ ds_stack_push(coord_list_y, irandom(maze_height - 1));
 //Marking the starting cell as visited
 maze_status[array_get_coord(ds_stack_top(coord_list_x), ds_stack_top(coord_list_y), maze_width)][cell.CELL_VISITED] = true;
 cells_visited = 1;
+
+//Sets up the delay between steps in the generation
+delay = 0;
