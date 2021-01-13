@@ -1,4 +1,4 @@
-//Checking to see whether or not the maze has been finished, can be changed to a while loop to generate instantly
+//Checking to see whether or not the maze has been finished
 if cells_visited < maze_width * maze_height
 {
 	//Sets up the list of possible directions that the algorithm can go

@@ -1,4 +1,4 @@
-//Checking to see whether or not the maze has been finished, can be changed to a while loop to generate instantly
+//Checks to see whether or not the maze has been finished
 if cells_visited < maze_width * maze_height
 {
 	//Sets up the list of possible directions that the algorithm can go
@@ -99,7 +99,6 @@ if cells_visited < maze_width * maze_height
 		ds_stack_pop(coord_list_y);
 	}
 	ds_list_destroy(neighbors);
-	delay = 0;
 }
 
 //Reset the maze if the space bar has been pressed

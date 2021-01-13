@@ -16,5 +16,10 @@ for (var i = 0; i < maze_width * maze_height; i++)
 	maze_status[i] = array_create(5, false);
 }
 
-//Setting up the current cell that the algorithm is setting
-current_cell = 0;
+//Setting up the coordinates for the pointer
+x_pos = irandom(maze_width - 1);
+y_pos = irandom(maze_height - 1);
+
+//Marking the starting cell as visited
+maze_status[array_get_coord(x_pos, y_pos, maze_width)][cell.CELL_VISITED] = true;
+cells_visited = 1;
