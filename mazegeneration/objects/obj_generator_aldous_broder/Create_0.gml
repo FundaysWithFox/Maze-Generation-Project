@@ -21,5 +21,5 @@ x_pos = irandom(maze_width - 1);
 y_pos = irandom(maze_height - 1);
 
 //Marking the starting cell as visited
-maze_status[array_get_coord(x_pos, y_pos, maze_width)][cell.CELL_VISITED] = true;
+maze_status[array_get_coord(x_pos, y_pos, maze_width)][CELL_VISITED] = true;
 cells_visited = 1;

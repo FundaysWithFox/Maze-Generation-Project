@@ -1,4 +1,4 @@
-randomize();
+random_set_seed(0);
 
 //A function to convert 2D array coordinates into 1D array coordinates
 array_get_coord = function(x, y, width)
@@ -16,12 +16,14 @@ for (var i = 0; i < maze_width * maze_height; i++)
 	maze_status[i] = array_create(5, false);
 }
 
-//Setting up the coordinates of the current cell and how many cells are confirmed to be visited in a row
-x_pos = irandom(maze_width - 1);
-y_pos = irandom(maze_height - 1);
-cells_clear = 0;
+x_pos = 0;
+y_pos = 0;
+for (var i = 0; i < maze_width; i++)
+{
+	row_status[i] = ds_list_create();
+	ds_list_add(row_status[i], i);
+	row_status_next[i] = ds_list_create();
+	maze_status[i][CELL_VISITED] = true;
+}
 
-
-//Marking the starting cell as visited
-maze_status[array_get_coord(x_pos, y_pos, maze_width)][CELL_VISITED] = true;
-cells_visited = 1;
+cells_visited = maze_width;

@@ -21,7 +21,7 @@ x_pos = 0;
 y_pos = 0;
 
 //Marks the first cell as visited
-maze_status[0][cell.CELL_VISITED] = true;
+maze_status[0][CELL_VISITED] = true;
 cells_visited = 0;
 
 //Sets the run set to empty

@@ -1,14 +1,5 @@
 randomize();
 
-enum cell
-{
-	CELL_PATH_NORTH = 0,
-	CELL_PATH_EAST = 1,
-	CELL_PATH_SOUTH = 2,
-	CELL_PATH_WEST = 3,
-	CELL_VISITED = 4,
-}
-
 //A function to convert 2D array coordinates into 1D array coordinates
 array_get_coord = function(x, y, width)
 {
@@ -32,5 +23,5 @@ ds_stack_push(coord_list_x, irandom(maze_width - 1));
 ds_stack_push(coord_list_y, irandom(maze_height - 1));
 
 //Marking the starting cell as visited
-maze_status[array_get_coord(ds_stack_top(coord_list_x), ds_stack_top(coord_list_y), maze_width)][cell.CELL_VISITED] = true;
+maze_status[array_get_coord(ds_stack_top(coord_list_x), ds_stack_top(coord_list_y), maze_width)][CELL_VISITED] = true;
 cells_visited = 1;

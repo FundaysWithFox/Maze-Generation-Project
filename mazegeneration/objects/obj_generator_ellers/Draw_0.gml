@@ -19,6 +19,17 @@ for (var i = 0; i < maze_width; i++)
 		}
 		
 		draw_set_color(c_black);
+		if j = y_pos
+		{
+			draw_text(vert_a[0] + 4, vert_a[1] + 4, row_status[i]);
+		}
+		
+		if j - 1 = y_pos
+		{
+			draw_text(vert_a[0] + 4, vert_a[1] + 4, row_status_next[i]);
+		}
+		
+		draw_set_color(c_black);
 		//Checks whether or not the cell being drawn has North, East, South, and West facing walls
 		if !maze_status[array_get_coord(i, j, maze_width)][CELL_PATH_NORTH]
 		{

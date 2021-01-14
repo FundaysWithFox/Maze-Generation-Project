@@ -3,7 +3,7 @@ while cells_visited < maze_width * maze_height
 	var x_pos = ds_list_find_value(path_list, ds_list_size(path_list) - 1)[0];
 	var y_pos = ds_list_find_value(path_list, ds_list_size(path_list) - 1)[1];
 	
-	if !maze_status[array_get_coord(x_pos, y_pos, maze_width)][cell.CELL_VISITED]
+	if !maze_status[array_get_coord(x_pos, y_pos, maze_width)][CELL_VISITED]
 	{
 		//Sets up the list of possible directions that the algorithm can go
 		var neighbors = ds_list_create();
@@ -44,7 +44,7 @@ while cells_visited < maze_width * maze_height
 			x_pos = path_current[0];
 			y_pos = path_current[1];
 		
-			maze_status[array_get_coord(x_pos, y_pos, maze_width)][cell.CELL_VISITED] = true;
+			maze_status[array_get_coord(x_pos, y_pos, maze_width)][CELL_VISITED] = true;
 			maze_status[array_get_coord(x_pos, y_pos, maze_width)][path_current[4]] = true;
 			maze_status[array_get_coord(path_current[2], path_current[3], maze_width)][path_current[4]] = true;
 			

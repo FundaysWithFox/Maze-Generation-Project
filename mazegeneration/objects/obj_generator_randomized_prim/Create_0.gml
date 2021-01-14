@@ -23,5 +23,5 @@ ds_list_add(coord_list_x, irandom(maze_width - 1));
 ds_list_add(coord_list_y, irandom(maze_height - 1));
 
 //Marking the starting cell as visited
-maze_status[array_get_coord(ds_list_find_value(coord_list_x, 0), ds_list_find_value(coord_list_y, 0), maze_width)][cell.CELL_VISITED] = true;
+maze_status[array_get_coord(ds_list_find_value(coord_list_x, 0), ds_list_find_value(coord_list_y, 0), maze_width)][CELL_VISITED] = true;
 cells_visited = 1;

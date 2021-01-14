@@ -1,0 +1,5 @@
+#macro CELL_PATH_NORTH 0
+#macro CELL_PATH_EAST 1
+#macro CELL_PATH_SOUTH 2
+#macro CELL_PATH_WEST 3
+#macro CELL_VISITED 4

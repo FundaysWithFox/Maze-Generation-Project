@@ -12,14 +12,14 @@ if current_cell < maze_width * maze_height
 			{
 				case 0:
 				{
-					maze_status[current_cell][cell.CELL_PATH_NORTH] = true;
-					maze_status[current_cell - maze_width][cell.CELL_PATH_SOUTH] = true;
+					maze_status[current_cell][CELL_PATH_NORTH] = true;
+					maze_status[current_cell - maze_width][CELL_PATH_SOUTH] = true;
 					break;
 				}
 				case 1:
 				{
-					maze_status[current_cell][cell.CELL_PATH_WEST] = true;
-					maze_status[current_cell - 1][cell.CELL_PATH_EAST] = true;
+					maze_status[current_cell][CELL_PATH_WEST] = true;
+					maze_status[current_cell - 1][CELL_PATH_EAST] = true;
 					break;
 				}
 			}
@@ -27,19 +27,19 @@ if current_cell < maze_width * maze_height
 		else
 		{
 			//If it is on the left side, carve a path North
-			maze_status[current_cell][cell.CELL_PATH_NORTH] = true;
-			maze_status[current_cell - maze_width][cell.CELL_PATH_SOUTH] = true;
+			maze_status[current_cell][CELL_PATH_NORTH] = true;
+			maze_status[current_cell - maze_width][CELL_PATH_SOUTH] = true;
 		}
 	}
 	else if current_cell > 0
 	{
 		//If the current cell is on the top and it isn't also on the left side, carve a path West
-		maze_status[current_cell][cell.CELL_PATH_WEST] = true;
-		maze_status[current_cell - 1][cell.CELL_PATH_EAST] = true;
+		maze_status[current_cell][CELL_PATH_WEST] = true;
+		maze_status[current_cell - 1][CELL_PATH_EAST] = true;
 	}
 	
 	//Mark the current cell as visited
-	maze_status[current_cell][cell.CELL_VISITED] = true;
+	maze_status[current_cell][CELL_VISITED] = true;
 	
 	//Change the current cell to the next one
 	current_cell ++;
