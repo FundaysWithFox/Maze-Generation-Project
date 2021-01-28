@@ -1,66 +1,69 @@
 if y_pos < maze_height
 {
-	if x_pos < maze_width
+	if x_pos < maze_width - 1
 	{
-		var current_cell = array_get_coord(x_pos, y_pos, maze_width);
-		
-		var same_set = false;
-		for (var i = 0; i < ds_list_size(row_status[current_cell % maze_width]); i++)
+		if (irandom(1) || y_pos >= maze_height - 1) && row_lists[x_pos] != row_lists[x_pos + 1]
 		{
-			for (var j = 0; j < ds_list_size(row_status_next[current_cell % maze_width]); j++)
+			maze_status[array_get_coord(x_pos, y_pos, maze_width)][CELL_PATH_EAST] = true;
+			maze_status[array_get_coord(x_pos + 1, y_pos, maze_width)][CELL_PATH_WEST] = true;
+			
+			var cell_current_set = row_lists[x_pos];
+			var cell_next_set = row_lists[x_pos + 1];
+			for (var i = 0; i < ds_list_size(ds_list_find_value(sets_list, cell_next_set)) || i > ds_list_size(ds_list_find_value(sets_list, cell_next_set)); i++)
 			{
-				if ds_list_find_value(row_status[current_cell % maze_width], i) = ds_list_find_value(row_status_next[current_cell % maze_width], j) same_set = true;
+				var cell_adding = ds_list_find_value(ds_list_find_value(sets_list, cell_next_set), i);
+				ds_list_add(cell_current_set, cell_adding);
+				row_lists[cell_adding] = cell_current_set;
 			}
+			ds_list_clear(cell_next_set);
 		}
 		
-		if (irandom(2) > 0 || y_pos = maze_height - 1) && !same_set && x_pos < maze_width - 1
-		{
-			maze_status[current_cell][CELL_PATH_EAST] = true;
-			maze_status[current_cell + 1][CELL_PATH_WEST] = true;
-			for (var i = 0; i < ds_list_size(row_status[current_cell % maze_width]); i++)
-			{
-				ds_list_add(row_status[(current_cell + 1) % maze_width], ds_list_find_value(row_status[current_cell % maze_width], i));
-			}
-		}
-		else if y_pos < maze_height - 1
-		{
-			var group = ds_list_create();
-			var group_check = current_cell;
-			
-			ds_list_add(group, group_check);
-			
-			while maze_status[group_check][CELL_PATH_WEST]
-			{
-				group_check--;
-				ds_list_add(group, group_check);
-			}
-			
-			var connection_count = irandom_range(1, ds_list_size(group));
-			for (var i = 0; i < connection_count; i++)
-			{
-				var group_choice = irandom(ds_list_size(group) - 1);
-				maze_status[ds_list_find_value(group, group_choice)][CELL_PATH_SOUTH] = true;
-				maze_status[ds_list_find_value(group, group_choice) + maze_width][CELL_PATH_NORTH] = true;
-				maze_status[ds_list_find_value(group, group_choice) + maze_width][CELL_VISITED] = true;
-				row_status_next[ds_list_find_value(group, group_choice) % maze_width] = row_status[group_check % maze_width];
-				
-				ds_list_delete(group, group_choice);
-			}
-		}
 		x_pos++;
 	}
 	else
 	{
 		x_pos = 0;
 		y_pos++;
-		for (var i = 0; i < maze_width; i++)
+		
+		if y_pos < maze_height
 		{
-			row_status[i] = row_status_next[i];
-			row_status_next[i] = ds_list_create();
-			ds_list_add(row_status_next[i], i + (y_pos * maze_width));
-			maze_status[i + (y_pos * maze_width)][CELL_VISITED] = true;
+			for (var i = 0; i < ds_list_size(sets_list) && !ds_list_empty(ds_list_find_value(sets_list, i)) && y_pos != maze_height - 1; i++)
+			{
+				var set_list = ds_list_create();
+				for (var j = 0; j < irandom_range(1, ds_list_size(ds_list_find_value(sets_list, i)) - 1); j++)
+				{
+					var cell_choosen = irandom(ds_list_size(ds_list_find_value(sets_list, i)) - 1);
+					var cell_pos = ds_list_find_value(ds_list_find_value(sets_list, i), cell_choosen);
+					maze_status[array_get_coord(cell_pos, y_pos - 1, maze_width)][CELL_PATH_SOUTH] = true;
+					maze_status[array_get_coord(cell_pos, y_pos, maze_width)][CELL_PATH_NORTH] = true;
+					ds_list_delete(ds_list_find_value(sets_list, i), cell_choosen);
+					
+					ds_list_add(set_list, cell_pos);
+					row_lists_next[cell_pos % maze_width] = row_lists[cell_pos % maze_width];
+				}
+				ds_list_add(sets_list_next, set_list);
+			}
+			
+			for (var i = 0; i < maze_width; i++)
+			{
+				if row_lists_next[i] = -1
+				{
+					row_lists_next[i] = ds_list_size(sets_list_next);
+					var set_list = ds_list_create();
+					ds_list_add(set_list, row_lists_next[i]);
+					
+					ds_list_add(sets_list_next, set_list);
+				}
+				
+				maze_status[array_get_coord(i, y_pos, maze_width)][CELL_VISITED] = true;
+			}
+			
+			row_lists = row_lists_next;
+			row_lists_next = array_create(maze_width, -1);
+			
+			sets_list = sets_list_next;
+			sets_list_next = ds_list_create();
 		}
-		cells_visited += maze_width;
 	}
 }
 

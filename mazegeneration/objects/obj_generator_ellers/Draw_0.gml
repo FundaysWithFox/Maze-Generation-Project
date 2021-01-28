@@ -5,7 +5,7 @@ for (var i = 0; i < maze_width; i++)
 	{
 		var vert_a = [i * cell_size, j * cell_size];
 		var vert_b = [(i + 1) * cell_size - 1, (j + 1) * cell_size - 1];
-		
+	
 		//If the cell being drawn has been visited, color it white. Otherwise, color it blue
 		if maze_status[array_get_coord(i, j, maze_width)][CELL_VISITED]
 		{
@@ -17,18 +17,7 @@ for (var i = 0; i < maze_width; i++)
 			draw_set_color(c_blue);
 			draw_rectangle(vert_a[0], vert_a[1], vert_b[0], vert_b[1], false);
 		}
-		
-		draw_set_color(c_black);
-		if j = y_pos
-		{
-			draw_text(vert_a[0] + 4, vert_a[1] + 4, row_status[i]);
-		}
-		
-		if j - 1 = y_pos
-		{
-			draw_text(vert_a[0] + 4, vert_a[1] + 4, row_status_next[i]);
-		}
-		
+	
 		draw_set_color(c_black);
 		//Checks whether or not the cell being drawn has North, East, South, and West facing walls
 		if !maze_status[array_get_coord(i, j, maze_width)][CELL_PATH_NORTH]
