@@ -41,8 +41,8 @@ if !ds_list_empty(cells_available)
 			path_current_y = path_start_y;
 		}
 	}
-	else
-	{
+	//else
+	//{
 		//If the current path has not been completed, choose a direction for the path to go in
 		var path_dir;
 		var path_next_x = -1;
@@ -59,7 +59,7 @@ if !ds_list_empty(cells_available)
 		path_status[array_get_coord(path_current_x, path_current_y, maze_width)] = path_dir;
 		path_current_x = path_next_x;
 		path_current_y = path_next_y;
-	}
+	//}
 }
 
 //Reset the maze if the space bar has been pressed

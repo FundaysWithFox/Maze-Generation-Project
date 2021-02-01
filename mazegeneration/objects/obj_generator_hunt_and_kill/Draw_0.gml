@@ -10,6 +10,8 @@ for (var i = 0; i < maze_width; i++)
 		if maze_status[array_get_coord(i, j, maze_width)][CELL_VISITED] draw_set_color(c_white);
 		else draw_set_color(c_blue);
 		
+		if array_get_coord(i, j, maze_width) < cells_clear draw_set_color(c_lime);
+		
 		if i = x_pos && j = y_pos && cells_visited < maze_width * maze_height draw_set_color(c_lime);
 		
 		draw_rectangle(vert_a[0], vert_a[1], vert_b[0], vert_b[1], false);

@@ -10,6 +10,7 @@
     {"id":{"name":"obj_generator_binary_tree","path":"objects/obj_generator_binary_tree/obj_generator_binary_tree.yy",},"order":2,},
     {"id":{"name":"obj_generator_sidewinder","path":"objects/obj_generator_sidewinder/obj_generator_sidewinder.yy",},"order":4,},
     {"id":{"name":"obj_generator_ellers","path":"objects/obj_generator_ellers/obj_generator_ellers.yy",},"order":7,},
+    {"id":{"name":"obj_pathfinder_depth_first_search","path":"objects/obj_pathfinder_depth_first_search/obj_pathfinder_depth_first_search.yy",},"order":10,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [

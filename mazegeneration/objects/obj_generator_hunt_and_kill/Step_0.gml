@@ -73,7 +73,7 @@ if cells_visited < maze_width * maze_height
 		while found = false
 		{
 			var currently_clear = true;
-		
+			
 			//Sets up the list of possible directions that the new cell can connect to
 			var neighbors = ds_list_create();
 		
